@@ -2,7 +2,9 @@ package com.example.jeon.nav_view;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +32,33 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // 드로어 설정.
+        setDrawer();
+
+        // 뷰페이저 설정
+        setViewPager();
+
+
+    }
+
+
+    // ----------------------------------------뷰페이저 설정 -------------------------------------
+
+    public void setViewPager(){
+        // 뷰페이저 어댑터 연동
+        ViewPager viewPager =(ViewPager)findViewById(R.id.main_pager);
+        main_view_pager_Adapter adapter = new main_view_pager_Adapter(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+
+        // 탭 레이아웃과 뷰페이저의 연동  ( 제목 지정은 helpListViewPagerAdapter 에서 한다 )
+        TabLayout tabLayout = (TabLayout)findViewById(R.id.main_tab);
+        tabLayout.setupWithViewPager(viewPager);
+
+    }
+
+
+    //----------------------------------------- 드로어 설정----------------------------------------
+    public void setDrawer(){
 
         dl = (DrawerLayout)findViewById(R.id.drawer);
         mToggle = new ActionBarDrawerToggle(MainActivity.this,dl,R.string.open,R.string.close);
@@ -47,9 +76,7 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
             mNavigationView.setNavigationItemSelectedListener(this);
         }
 
-
     }
-
 
     //  이걸 넣어줘야지 네이게이션 메뉴가 드로워가 활성화 된다.
     @Override
@@ -85,7 +112,6 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
 
         return true;
     }
-
 
     // 네비게이션 아이템 클릭 리스너
 
