@@ -47,9 +47,6 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
             mNavigationView.setNavigationItemSelectedListener(this);
         }
 
-        String test;
-        test = "test";
-
     }
 
 
