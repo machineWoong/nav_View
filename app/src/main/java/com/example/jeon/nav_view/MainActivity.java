@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
         }
 
         String test;
+        test = "test";
 
     }
 
